@@ -1,0 +1,12 @@
+C:\Users\44063076806\backend\LoginRedes\bin\Debug\netcoreapp2.0\app.db
+C:\Users\44063076806\backend\LoginRedes\bin\Debug\netcoreapp2.0\LoginRedes.deps.json
+C:\Users\44063076806\backend\LoginRedes\bin\Debug\netcoreapp2.0\LoginRedes.runtimeconfig.json
+C:\Users\44063076806\backend\LoginRedes\bin\Debug\netcoreapp2.0\LoginRedes.runtimeconfig.dev.json
+C:\Users\44063076806\backend\LoginRedes\bin\Debug\netcoreapp2.0\LoginRedes.dll
+C:\Users\44063076806\backend\LoginRedes\bin\Debug\netcoreapp2.0\LoginRedes.pdb
+C:\Users\44063076806\backend\LoginRedes\obj\Debug\netcoreapp2.0\LoginRedes.csproj.CoreCompileInputs.cache
+C:\Users\44063076806\backend\LoginRedes\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\44063076806\backend\LoginRedes\obj\Debug\netcoreapp2.0\LoginRedes.AssemblyInfoInputs.cache
+C:\Users\44063076806\backend\LoginRedes\obj\Debug\netcoreapp2.0\LoginRedes.AssemblyInfo.cs
+C:\Users\44063076806\backend\LoginRedes\obj\Debug\netcoreapp2.0\LoginRedes.dll
+C:\Users\44063076806\backend\LoginRedes\obj\Debug\netcoreapp2.0\LoginRedes.pdb
