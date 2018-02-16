@@ -11,6 +11,13 @@ using Microsoft.Extensions.DependencyInjection;
 using LoginRedes.Data;
 using LoginRedes.Models;
 using LoginRedes.Services;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OAuth;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
 
 namespace LoginRedes
 {
@@ -29,16 +36,54 @@ namespace LoginRedes
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddAuthentication().AddFacebook(facebookOptions => {
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
                 facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
 
-            services.AddAuthentication().AddGoogle(googleOptions => {
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
                 googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
             });
-            
+
+            services.AddAuthentication().AddTwitter(twitterOptions =>
+            {
+                twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+                twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+            });
+
+            services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
+            {
+                microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
+                microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
+            });
+
+            services.AddAuthentication().AddOAuth("github", githubOptions =>
+            {
+                githubOptions.ClientId = Configuration["Authentication:GitHub:ClientId"];
+                githubOptions.ClientSecret = Configuration["Authentication:GitHub:ClientSecret"];
+                githubOptions.CallbackPath = new PathString("/signin-github");
+
+                githubOptions.AuthorizationEndpoint = "https://github.com/login/oauth/authorize";
+                githubOptions.TokenEndpoint = "https://github.com/login/oauth/access_token";
+                githubOptions.UserInformationEndpoint = "https://api.github.com/user";
+            });
+
+            services.AddAuthentication().AddOAuth("strava", stravaOptions =>
+            {
+                stravaOptions.ClientId = Configuration["Authentication:Strava:ClientId"];
+                stravaOptions.ClientSecret = Configuration["Authentication:Strava:ClientSecret"];
+                //stravaOptions.Scope = "";
+                stravaOptions.CallbackPath = new PathString("/signin-strava");
+
+                stravaOptions.AuthorizationEndpoint = "https://www.strava.com/oauth/authorize";
+                stravaOptions.TokenEndpoint = " https://www.strava.com/oauth/token";
+                stravaOptions.UserInformationEndpoint = "https://www.strava.com/api/v3/athlete";               
+
+            });
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
